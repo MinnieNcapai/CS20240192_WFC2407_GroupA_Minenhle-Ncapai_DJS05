@@ -65,3 +65,7 @@ console.log("After performing Add action:", store.getState());
 // SCENARIO 3: Decrementing the Counter
 store.dispatch({ type: Subtract }); // Subtract action
 console.log("After performing Subtract action:", store.getState());
+
+// SCENARIO 4: Resetting the Counter
+store.dispatch({ type: Resett }); // Reset action
+console.log("After performing Reset action:", store.getState());
