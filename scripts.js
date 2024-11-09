@@ -56,3 +56,12 @@ store.subscribe(state => console.log ("State has been updated:", state));
 
 // SCENARIO 1: Initial State Verification
 console.log ("Verifying iniial state:", store.getState());
+
+// SCENARIO 2: Incrementing the Counter
+store.dispatch ({ type:  Add }); // First Add
+store.dispatch ({ type: Add });  // Second Add
+console.log("After performing Add action:", store.getState());
+
+// SCENARIO 3: Decrementing the Counter
+store.dispatch({ type: Subtract }); // Subtract action
+console.log("After performing Subtract action:", store.getState());
