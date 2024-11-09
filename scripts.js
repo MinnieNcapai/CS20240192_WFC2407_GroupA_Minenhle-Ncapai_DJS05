@@ -47,3 +47,12 @@ dispatch(action) {
     this.listeners.push(listener);
  }
 }
+
+// Create store with reducer
+const store = new Store(counterReducer);
+
+// Subscribe to log state changes in the console
+store.subscribe(state => console.log ("State has been updated:", state));
+
+// SCENARIO 1: Initial State Verification
+console.log ("Verifying iniial state:", store.getState());
