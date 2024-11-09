@@ -1,7 +1,7 @@
 // Define Action Types
-const ADD = 'ADD'
-const SUBTRACT = 'SUBTRACT'
-const RESET = 'RESET'
+const ADD = 'ADD';
+const SUBTRACT = 'SUBTRACT';
+const RESET = 'RESET';
 
 //Initial State
 const initialState = {
@@ -11,11 +11,11 @@ const initialState = {
 //Reducer Function
 const counterReducer = (state = initialState, action) => {
     switch (action.type) {
-        case Add:
+        case ADD:
             return { count: state.count + 1 };
-        case Subtract:
+        case SUBTRACT:
             return { count: state.count - 1 };
-        case Reset:
+        case RESET:
             return { count: 0 };
         default:
             return state;
@@ -25,21 +25,21 @@ const counterReducer = (state = initialState, action) => {
 //Store Class
 class Store {
     constructor(reducer) {
-        this.state = reducer ()
+        this.state = reducer (undefined, {});
         this.reducer = reducer;
         this.listeners = [];
     }
 
-//Method to get che current state
+//Method to get the current state
 getState() {
     return this.state;
 }
 
 //Method to dispatch actions and update the state
 dispatch(action) {
-    this.state = this.reducer (this.state, action); // Use reducer to calculate new state
+    this.state = this.reducer(this.state, action); // Use reducer to calculate new state
 // Notify all listeners about the state change
-   this.listeners.ForEach (listener => listener(this.state));;   
+   this.listeners.forEach(listener => listener(this.state));;   
 }
 
  // Method to subscribe a listener to state changes
@@ -55,17 +55,17 @@ const store = new Store(counterReducer);
 store.subscribe(state => console.log ("State has been updated:", state));
 
 // SCENARIO 1: Initial State Verification
-console.log ("Verifying iniial state:", store.getState());
+console.log ("Verifying initial state:", store.getState());
 
 // SCENARIO 2: Incrementing the Counter
-store.dispatch ({ type:  Add }); // First Add
-store.dispatch ({ type: Add });  // Second Add
+store.dispatch ({ type:  ADD }); // First Add
+store.dispatch ({ type: ADD });  // Second Add
 console.log("After performing Add action:", store.getState());
 
 // SCENARIO 3: Decrementing the Counter
-store.dispatch({ type: Subtract }); // Subtract action
+store.dispatch({ type: SUBTRACT }); // Subtract action
 console.log("After performing Subtract action:", store.getState());
 
 // SCENARIO 4: Resetting the Counter
-store.dispatch({ type: Resett }); // Reset action
+store.dispatch({ type: RESET }); // Reset action
 console.log("After performing Reset action:", store.getState());
