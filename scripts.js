@@ -22,3 +22,28 @@ const counterReducer  (state = initialState, action) => {
 }
 }
 
+//Store Class
+class Store {
+    constructor(reducer) {
+        this.state = reducer ()
+        this.reducer = reducer;
+        this.listeners = [];
+    }
+
+//Method to get che current state
+getState() {
+    return this.state;
+}
+
+//Method to dispatch actions and update the state
+dispatch(action) {
+    this.state = this.reducer (this.state, action); // Use reducer to calculate new state
+// Notify all listeners about the state change
+   this.listeners.ForEach (listener => listener(this.state));;   
+}
+
+ // Method to subscribe a listener to state changes
+ subscribe(listener) {
+    this.listeners.push(listener);
+ }
+}
