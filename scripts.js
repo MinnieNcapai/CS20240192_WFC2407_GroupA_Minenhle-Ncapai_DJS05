@@ -26,7 +26,7 @@ const counterReducer = (state = initialState, action) => {
 class Store {
     constructor(reducer) {
      // Initialize store with the reducer and initial state
-        this.state = reducer (undefined, {});
+        this.state = reducer (undefined, { type: 'INIT' }); //Explicitly set initial state
         this.reducer = reducer;
         this.listeners = []; // Listeners to notify about state changes
     }
